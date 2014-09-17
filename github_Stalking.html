@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Kreon' rel='stylesheet' type='text/css'>
+    <title>Github_Stalking</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="github_Stalking.css"> 
+  <meta charset="UTF-8">
+  <body>
+    <h1>Check any github profile</h1>
+  <div class="pure-g">
+    <div class="pure-u-1-5"></div>
+    <div class="pure-u-3-5">
+    <form class="pure-form">
+      <input class="pure-input-1" type="text" id="search" placeholder='username'>
+    </form>
+   
+   <main class="profile-container">
+      <article class="profile">
+        <section class="pic">
+          <img src="https://avatars.githubusercontent.com/u/5008648?">
+        </section>
+
+        <section class="statistics">
+          <h3>
+            <a href="https://github.com/alexmakers">
+              alexmakers
+            </a>
+          </h3>
+          <strong>Repos: 35</strong>
+          <strong>Followers: 49</strong>
+        </section>
+        <br clear="all">
+      </article>
+    </main>
+  </div>
+    <div class="pure-u-1-5"></div>
+    </div>
+  </body>
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $('form').on('submit', function(event){
+      event.preventDefault();
+      var url = "https://api.github.com/users/" + $('#search').val() + '?access_token=e36c94d9874f7626262f92f36c9b78b35e8b50de'; 
+      $.get(url, function(user){
+        $('<article><ul><li>' + '<a href="http://github.com/' + $('#search').val() + '"><img src="' + user.avatar_url + '" ></a></li><li><strong>' + user.name + '</strong></li><li>Repos: ' + user.public_repos + '</li><li>Location: ' + user.location + '</li><li>Email: <a href="mailto:' + user.email + '">' + user.email + '</  a></li></ul></article>').hide().prependTo('main').fadeIn();
+      }).always(function(){
+      $('#search').val('');
+      $('main article:gt(3)').slideToggle(function(){
+        $(this).remove();
+      })
+    });
+    });
+  })
+  </script>
+</html>

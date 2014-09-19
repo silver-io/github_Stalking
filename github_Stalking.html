@@ -16,7 +16,7 @@
     </form>
    
    <main class="profile-container">
-      <article class="profile">
+<!--       <article class="profile">
         <section class="pic">
           <img src="https://avatars.githubusercontent.com/u/5008648?">
         </section>
@@ -31,7 +31,7 @@
           <strong>Followers: 49</strong>
         </section>
         <br clear="all">
-      </article>
+      </article> -->
     </main>
   </div>
     <div class="pure-u-1-5"></div>
@@ -43,7 +43,7 @@
   $(document).ready(function(){
     $('form').on('submit', function(event){
       event.preventDefault();
-      var url = "https://api.github.com/users/" + $('#search').val() + '?access_token=e36c94d9874f7626262f92f36c9b78b35e8b50de'; 
+      var url = "https://api.github.com/users/" + $('#search').val() + '?access_token=ac3795622dceef2bc440d9e5511cb518f4999737'; 
       $.get(url, function(user){
         $('<article><ul><li>' + '<a href="http://github.com/' + $('#search').val() + '"><img src="' + user.avatar_url + '" ></a></li><li><strong>' + user.name + '</strong></li><li>Repos: ' + user.public_repos + '</li><li>Location: ' + user.location + '</li><li>Email: <a href="mailto:' + user.email + '">' + user.email + '</  a></li></ul></article>').hide().prependTo('main').fadeIn();
       }).always(function(){
@@ -56,3 +56,31 @@
   })
   </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
